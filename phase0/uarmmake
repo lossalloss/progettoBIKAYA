@@ -27,7 +27,7 @@ kernel : terminal.o crtso.o libuarm.o
 	$(LD) -o $@ $^ $(LDFLAGS)
 
 clean:
-	-rm -f *.o kernel kernel.* terminal0.uarm
+	-rm -f *.o kernel kernel.*
 
 # Pattern rule for assembly modules
 %.o : %.s
