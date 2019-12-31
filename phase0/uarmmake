@@ -19,7 +19,7 @@ LDFLAGS = -G 0 -nostdlib -T $(UARM_DIR)/elf32ltsarm.h.uarmcore.x
 # Add the location of crt*.S to the search path
 VPATH = $(UARM_DIR)
 
-.PHONY : all clean
+.PHONY : clean all 
 
 all : kernel
 
@@ -27,7 +27,7 @@ kernel : terminal.o termprint.o crtso.o libuarm.o
 	$(LD) -o $@ $^ $(LDFLAGS)
 
 clean:
-	-rm -f *.o kernel kernel.*.uarm
+	-rm -f *.o kernel kernel.*
 
 # Pattern rule for assembly modules
 %.o : %.s

@@ -1,8 +1,10 @@
-/* ----------------------------------------------------------------
-| aggiungere nomi cognomi? 
-  aggiungere nota funzione term_getchar from: 
-  https://github.com/tjonjic/umps.git examples/termio/terminal.c   |
-   ---------------------------------------------------------------*/
+/* ------------------------------------------------------------------------------------------------
+| Busi Samuele
+| Sallei Enrico
+| Raimondi Bianca
+| Amato Alessio 
+| Nota: funzione term_getchar from: https://github.com/tjonjic/umps.git examples/termio/terminal.c
+ -------------------------------------------------------------------------------------------------*/
 #include "termprint.h"
 #include "system.h"
 
@@ -33,17 +35,17 @@ int term_getchar(void){
     unsigned int stat;
 
     stat = rx_status(terminal);
-    if (stat != DEV_S_READY && stat != DEV_TRCV_S_CHARRECV) /* terminal ready and ack received */
+    if (stat != DEV_S_READY && stat != DEV_TRCV_S_CHARRECV){ /* terminal ready and ack received */
         return -1;
-
+	}
         terminal->recv_command = DEV_TRCV_C_RECVCHAR;
 
     while ((stat = rx_status(terminal)) == DEV_TRCV_S_BUSY) /* wait for terminal to complete receive */
         ;
 
-    if (stat != DEV_TRCV_S_CHARRECV)
+    if (stat != DEV_TRCV_S_CHARRECV){
         return -1;
-
+	}
         stat = terminal->recv_status;
 
     print_putchar(stat >> CHAR_OFFSET); /* bitwise rightshift to output char, call print_putchar(char) */
