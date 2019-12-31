@@ -23,11 +23,11 @@ VPATH = $(UARM_DIR)
 
 all : kernel
 
-kernel : terminal.o termprint.o crtso.o libuarm.o
+kernel : terminal.o crtso.o libuarm.o
 	$(LD) -o $@ $^ $(LDFLAGS)
 
 clean:
-	-rm -f *.o kernel kernel.*
+	-rm -f *.o kernel kernel.* terminal0.uarm
 
 # Pattern rule for assembly modules
 %.o : %.s
